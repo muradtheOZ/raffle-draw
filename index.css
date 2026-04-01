@@ -1,0 +1,491 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bd-green: #006a4e;
+  --bd-green-dark: #004d38;
+  --bd-green-light: #00875f;
+  --bd-red: #f42a41;
+  --gold: #ffd700;
+  --gold-dark: #b8860b;
+  --cream: #f5f5dc;
+  --military-olive: #4b5320;
+  --military-khaki: #c3b091;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Exo 2", sans-serif;
+  background: linear-gradient(
+    135deg,
+    var(--bd-green-dark) 0%,
+    var(--bd-green) 50%,
+    var(--military-olive) 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Background Pattern Overlay */
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(255, 215, 0, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 215, 0, 0.1) 0%,
+      transparent 50%
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 50px,
+      rgba(0, 0, 0, 0.05) 50px,
+      rgba(0, 0, 0, 0.05) 100px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Main Container */
+.container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 40px;
+  max-width: 1400px;
+  width: 100%;
+}
+
+/* Header Styles */
+.header {
+  margin-bottom: 60px;
+}
+
+.emblem-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+.star {
+  font-size: 80px;
+  color: var(--gold);
+  text-shadow:
+    0 0 20px rgba(255, 215, 0, 0.8),
+    0 0 40px rgba(255, 215, 0, 0.5),
+    0 0 60px rgba(255, 215, 0, 0.3);
+  animation: starPulse 2s ease-in-out infinite;
+}
+
+.left-star {
+  animation-delay: 0s;
+}
+
+.right-star {
+  animation-delay: 1s;
+}
+
+@keyframes starPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.title {
+  font-family: "Orbitron", monospace;
+  font-size: 120px;
+  font-weight: 900;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 20px;
+  text-shadow:
+    0 0 10px rgba(255, 215, 0, 0.8),
+    0 0 30px rgba(255, 215, 0, 0.6),
+    0 0 50px rgba(255, 215, 0, 0.4),
+    4px 4px 0 var(--bd-red);
+  animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.2);
+  }
+}
+
+.title.winner-title {
+  color: #f42a41;
+  animation:
+    winnerTitleFlash 0.5s ease-in-out 5,
+    titleGlow 3s ease-in-out infinite 2.5s;
+  text-shadow:
+    0 0 10px rgba(244, 42, 65, 0.8),
+    0 0 30px rgba(244, 42, 65, 0.6),
+    0 0 50px rgba(244, 42, 65, 0.4),
+    4px 4px 0 var(--gold);
+}
+
+@keyframes winnerTitleFlash {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+.military-badge {
+  display: none;
+}
+
+/* Number Display Section */
+.number-display-container {
+  margin: 60px auto;
+  perspective: 1000px;
+}
+
+.display-frame {
+  background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+  border: 8px solid var(--gold);
+  border-radius: 20px;
+  padding: 50px 80px;
+  display: inline-block;
+  box-shadow:
+    0 0 50px rgba(255, 215, 0, 0.3),
+    inset 0 0 50px rgba(0, 0, 0, 0.8),
+    0 20px 60px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.display-frame::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 4px solid var(--bd-red);
+  border-radius: 24px;
+  pointer-events: none;
+}
+
+.digit-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.digit {
+  width: 180px;
+  height: 240px;
+  background: linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 50%, #0d0d0d 100%);
+  border: 4px solid var(--bd-green);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow:
+    inset 0 0 30px rgba(0, 106, 78, 0.3),
+    0 0 20px rgba(0, 106, 78, 0.2);
+  overflow: hidden;
+}
+
+.digit::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.digit-value {
+  font-family: "Orbitron", monospace;
+  font-size: 160px;
+  font-weight: 900;
+  color: var(--bd-green);
+  text-shadow:
+    0 0 20px var(--bd-green-light),
+    0 0 40px var(--bd-green),
+    0 0 60px rgba(0, 106, 78, 0.5);
+  transition: all 0.3s ease;
+}
+
+.digit.revealed .digit-value {
+  color: var(--gold);
+  text-shadow:
+    0 0 20px var(--gold),
+    0 0 40px rgba(255, 215, 0, 0.8),
+    0 0 60px rgba(255, 215, 0, 0.5);
+  animation: digitReveal 0.5s ease-out;
+}
+
+@keyframes digitReveal {
+  0% {
+    transform: scale(2) rotateX(90deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotateX(-10deg);
+  }
+  100% {
+    transform: scale(1) rotateX(0);
+    opacity: 1;
+  }
+}
+
+/* Button Styles */
+.button-container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 10px;
+}
+
+.btn {
+  position: relative;
+  padding: 18px 40px;
+  font-family: "Orbitron", monospace;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: visible;
+  transition: all 0.3s ease;
+}
+
+.draw-btn {
+  background: linear-gradient(180deg, var(--bd-red) 0%, #c41e2e 100%);
+  color: white;
+  border: 4px solid var(--gold);
+  box-shadow:
+    0 0 30px rgba(244, 42, 65, 0.5),
+    0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.draw-btn:hover:not(:disabled) {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow:
+    0 0 50px rgba(244, 42, 65, 0.8),
+    0 15px 50px rgba(0, 0, 0, 0.4);
+}
+
+.draw-btn:active:not(:disabled) {
+  transform: translateY(2px) scale(0.98);
+}
+
+.draw-btn:disabled {
+  background: linear-gradient(180deg, #666 0%, #444 100%);
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.7;
+}
+
+.reset-btn {
+  background: linear-gradient(
+    180deg,
+    var(--bd-green) 0%,
+    var(--bd-green-dark) 100%
+  );
+  color: white;
+  border: 4px solid var(--gold);
+  box-shadow:
+    0 0 30px rgba(0, 106, 78, 0.5),
+    0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.reset-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow:
+    0 0 50px rgba(0, 106, 78, 0.8),
+    0 15px 50px rgba(0, 0, 0, 0.4);
+}
+
+.reset-btn:active {
+  transform: translateY(2px) scale(0.98);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Footer Styles */
+.footer {
+  margin-top: 60px;
+}
+
+.crescent-star {
+  font-size: 80px;
+  color: var(--gold);
+  text-shadow:
+    0 0 20px rgba(255, 215, 0, 0.8),
+    0 0 40px rgba(255, 215, 0, 0.5);
+  animation: crescentFloat 3s ease-in-out infinite;
+}
+
+@keyframes crescentFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.footer-text {
+  font-size: 48px;
+  color: var(--cream);
+  margin-top: 20px;
+  text-shadow: 2px 2px 0 var(--bd-green-dark);
+  letter-spacing: 10px;
+}
+
+/* Responsive Design for Projector */
+@media (min-width: 1920px) {
+  .title {
+    font-size: 120px;
+  }
+
+  .subtitle {
+    font-size: 56px;
+  }
+
+  .digit {
+    width: 220px;
+    height: 300px;
+  }
+
+  .digit-value {
+    font-size: 200px;
+  }
+
+  .btn {
+    padding: 40px 100px;
+    font-size: 42px;
+  }
+}
+
+/* Extra animations for revealed state */
+.digit.revealed {
+  border-color: var(--gold);
+  box-shadow:
+    inset 0 0 30px rgba(255, 215, 0, 0.3),
+    0 0 30px rgba(255, 215, 0, 0.4);
+}
+
+/* Winner celebration effect */
+.container.complete .display-frame {
+  animation: winnerPulse 1s ease-in-out infinite;
+}
+
+.container.complete .digit.revealed .digit-value {
+  animation: flashNumber 0.3s ease-in-out 6;
+}
+
+@keyframes flashNumber {
+  0%,
+  100% {
+    opacity: 1;
+    text-shadow:
+      0 0 20px var(--gold),
+      0 0 40px rgba(255, 215, 0, 0.8),
+      0 0 60px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    opacity: 0.3;
+    text-shadow:
+      0 0 40px var(--gold),
+      0 0 80px rgba(255, 215, 0, 1),
+      0 0 120px rgba(255, 215, 0, 0.8);
+  }
+}
+
+@keyframes winnerPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 50px rgba(255, 215, 0, 0.3),
+      inset 0 0 50px rgba(0, 0, 0, 0.8),
+      0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow:
+      0 0 80px rgba(255, 215, 0, 0.6),
+      inset 0 0 50px rgba(0, 0, 0, 0.8),
+      0 20px 60px rgba(0, 0, 0, 0.5),
+      0 0 100px rgba(244, 42, 65, 0.3);
+  }
+}
+
+/* Confetti Styles */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  top: -20px;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotateZ(0deg) rotateX(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotateZ(720deg) rotateX(360deg);
+    opacity: 0.7;
+  }
+}
