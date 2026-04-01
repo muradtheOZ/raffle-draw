@@ -382,6 +382,81 @@ body {
   letter-spacing: 10px;
 }
 
+/* Laptop screens */
+@media (min-width: 1025px) and (max-width: 1919px) {
+  .container {
+    padding: 20px 40px;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .header {
+    margin-bottom: 30px;
+  }
+
+  .emblem-container {
+    gap: 25px;
+  }
+
+  .star {
+    font-size: 50px;
+  }
+
+  .title {
+    font-size: 80px;
+    letter-spacing: 12px;
+  }
+
+  .number-display-container {
+    margin: 30px auto;
+  }
+
+  .display-frame {
+    padding: 30px 50px;
+    border-width: 6px;
+  }
+
+  .digit-container {
+    gap: 20px;
+  }
+
+  .digit {
+    width: 140px;
+    height: 180px;
+    border-width: 3px;
+  }
+
+  .digit-value {
+    font-size: 120px;
+  }
+
+  .button-container {
+    margin-top: 25px;
+    gap: 20px;
+  }
+
+  .btn {
+    padding: 15px 35px;
+    font-size: 20px;
+    letter-spacing: 3px;
+  }
+
+  .footer {
+    margin-top: 30px;
+  }
+
+  .crescent-star {
+    font-size: 50px;
+  }
+
+  .footer-text {
+    font-size: 36px;
+    letter-spacing: 6px;
+  }
+}
+
 /* Responsive Design for Projector */
 @media (min-width: 1920px) {
   .title {
